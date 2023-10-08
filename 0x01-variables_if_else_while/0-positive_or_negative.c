@@ -5,7 +5,7 @@
 /**
  * main - Entry point of the program
  *
- * Description: This program generates a random number, checks if it's positive,
+ * Description: generates a random number, checks if it's positive,
  * negative, or zero, and then prints a message accordingly.
  *
  * Return: Always 0 (Success)
