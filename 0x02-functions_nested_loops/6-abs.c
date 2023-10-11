@@ -6,9 +6,9 @@
  *
  * Return: The absolute value of n.
  */
-int _abs(int i)
+int _abs(int n)
 {
-	if (i < 0)
-		return (-i);
-	return (i);
+	if (n < 0)
+		return (-n);
+	return (n);
 }
