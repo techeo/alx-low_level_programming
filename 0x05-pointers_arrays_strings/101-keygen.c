@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Function to generate a random lowercase letter
 char random_lowercase_letter() {
     return 'a' + rand() % 26;
 }
 
 int main() {
-    srand(time(NULL)); // Seed the random number generator with the current time
+    int i;
+    char password[9];
 
-    char password[9]; // Assume 8-character password with a null terminator
+    srand(time(NULL));
 
-    for (int i = 0; i < 8; i++) {
+    for (i = 0; i < 8; i++) {
         password[i] = random_lowercase_letter();
     }
     password[8] = '\0';
