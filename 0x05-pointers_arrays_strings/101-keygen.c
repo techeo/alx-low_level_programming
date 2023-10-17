@@ -1,25 +1,23 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
-#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-char random_lowercase_letter() {
-    return 'a' + rand() % 26;
-}
+int main(void)
+{
+	int sum = 0;
+	char randchar;
 
-int main() {
-    int i;
-    char password[16];
+	srand(time(0));
 
-    srand(time(NULL));
+	while (sum <= 2646)
+	{
+		randchar = rand() % 128;
+		write(1, &randchar, 1);
+		sum += randchar;
+	}
 
-    strcpy(password, "Tada! Congrats");
-
-    for (i = 0; i < 8; i++) {
-        password[i] = random_lowercase_letter();
-    }
-
-    printf("%s\n", password);
-
-    return 0;
+	randchar = 2772 - sum;
+	write(1, &randchar, 1);
+	return (0);
 }
