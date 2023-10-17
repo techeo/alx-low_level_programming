@@ -1,10 +1,9 @@
 #include "main.h"
-
 /**
- * print_rev - Prints a string in reverse.
- * @s: A pointer to the string to be printed.
+ * print_rev - minic puts.
+ * @s: the value to process.
  */
-void print_rev(char *s);
+void print_rev(char *s)
 {
 	int count;
 
