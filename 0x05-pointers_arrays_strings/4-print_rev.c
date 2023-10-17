@@ -1,20 +1,20 @@
 #include "main.h"
+
 /**
- * print_rev - minic puts.
- * @s: the value to process.
+ * print_rev - Prints a string in reverse followed by a new line.
+ * @s: A pointer to the string to be printed in reverse.
  */
-void print_rev(char *s)
-{
-	int count;
+void print_rev(char *s) {
+    int length = 0;
+    int i;
 
-	while (*(s + count) != '\0')
-	{
-		count++;
-	}
+    while (s[length] != '\0') {
+        length++;
+    }
 
-	while (count--)
-	{
-		_putchar(*(s + (count)));
-	}
-	_putchar('\n');
+    for (i = length - 1; i >= 0; i--) {
+        _putchar(s[i]);
+    }
+
+    _putchar('\n');
 }
