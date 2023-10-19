@@ -1,32 +1,34 @@
 #include "main.h"
 
 /**
- * cap_string - Capitalize all words in a string.
+ * cap_string - Capitalizes every word in a string.
  * @str: The string to modify.
  *
- * Return: A pointer to the modified string.
+ * Return: A pointer to the resulting string.
  */
-char *cap_string(char *s)
+char *cap_string(char *str)
 {
-	int sep = 1;
-	int i = 0;
+	int i, j;
 
-	while (s[i] != '\0')
+	char separators[13] = {' ', '\t', '\n', ',', ';', '.',
+	'!', '?', '"', '(', ')', '{', '}'};
+
+	for (i = 0; str[i] != '\0'; i++)
 	{
-		if (sep && (s[i] >= 'a' && s[i] <= 'z'))
+		if (i == 0 && str[i] >= 'a' && str[i] <= 'z')
+			str[i] -= 32;
+
+		for (j = 0; j < 13; j++)
 		{
-			s[i] -= 32;
-			sep = 0;
-		}
-	else if (s[i] == ' ' || s[i] == '\t' || s[i] == '\n' || s[i] == ',' || s[i] == ';' ||
-                 s[i] == '.' || s[i] == '!' || s[i] == '?' || s[i] == '"' || s[i] == '(' ||
-                 s[i] == ')' || s[i] == '{' || s[i] == '}')
+			if (str[i] == separators[j])
 			{
-				sep = 1;
+				if (str[i + 1] >= 'a' && str[i + 1] <= 'z')
+				{
+					str[i + 1] -= 32;
+				}
 			}
 		}
-		i++;
 	}
 
-	return (s);
+	return (str);
 }
