@@ -1,57 +1,57 @@
 #include "main.h"
 
-int _strlen(char *s);
-
 /**
- * infinite_add - Adds two numbers
- * @n1: First number as a string
- * @n2: Second number as a string
- * @r: Buffer to store the result
- * @size_r: Size of the buffer
+ * infinite_add - Adds two numbers as strings
+ * @n1: The first number as a string
+ * @n2: The second number as a string
+ * @r: The buffer to store the result
+ * @size_r: The size of the buffer
  *
- * Return: Pointer to the result or 0 if the result can't fit in r
+ * Return: A pointer to the result
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-    int len1, len2, carry, sum, i, j;
+	int len1, len2, carry, sum;
+	int i, j, k;
 
-    len1 = _strlen(n1) - 1;
-    len2 = _strlen(n2) - 1;
-    carry = 0;
+	for (len1 = 0; n1[len1] != '\0'; len1++)
+		;
+	for (len2 = 0; n2[len2] != '\0'; len2++)
+		;
 
-    if (size_r <= len1 || size_r <= len2 || size_r == 0)
-        return (0);
+	if (size_r <= len1 || size_r <= len2 || size_r == 0)
+		return (0);
 
-    r[size_r] = '\0';
-    i = len1;
-    j = len2;
-    while (i >= 0 || j >= 0 || carry)
-    {
-        sum = carry;
-        if (i >= 0)
-            sum += (n1[i] - '0');
-        if (j >= 0)
-            sum += (n2[j] - '0');
+	carry = 0;
+	for (i = len1 - 1, j = len2 - 1, k = size_r - 1; k >= 0; i--, j--, k--)
+	{
+		sum = carry;
+		if (i >= 0)
+			sum += n1[i] - '0';
+		if (j >= 0)
+			sum += n2[j] - '0';
 
-        carry = sum / 10;
-        r[--size_r] = (sum % 10) + '0';
+		if (i >= 0 || j >= 0)
+		{
+			if (sum > 9)
+			{
+				carry = 1;
+				sum -= 10;
+			}
+			else
+				carry = 0;
+			r[k] = sum + '0';
+		}
+		else if (k == 0)
+		{
+			if (sum > 9)
+				return (0);
+			r[k] = sum + '0';
+		}
+	}
+	r[size_r] = '\0';
 
-        if (i >= 0)
-            i--;
-        if (j >= 0)
-            j--;
-    }
-    if (r[size_r] == '0')
-        size_r++;
-    return (r + size_r);
-}
-
-int _strlen(char *s)
-{
-    int i = 0;
-
-    while (s[i] != '\0')
-        i++;
-
-    return i;
+	if (r[0] == '0')
+		return (r + 1);
+	return (r);
 }
