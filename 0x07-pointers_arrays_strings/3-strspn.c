@@ -26,9 +26,9 @@ unsigned int _strspn(char *s, char *accept)
 			accept++;
 		}
 		if (match == 0)
-			return count;
+			return (count);
 		s++;
 	}
 
-	return count;
+	return (count);
 }
