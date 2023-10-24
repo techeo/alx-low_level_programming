@@ -1,34 +1,34 @@
 #include "main.h"
 
 /**
- * _strspn - gets the length of a prefix substring
- * @s: the string to search
- * @accept: the string containing characters to be matched
+ * _strspn - calculates the length of the initial segment of s
+ * consisting of bytes in accept.
+ * @s: string to search in.
+ * @accept: bytes in which to search for.
  *
- * Return: number of bytes
+ * Return: the number of bytes matching accept.
  */
 unsigned int _strspn(char *s, char *accept)
 {
-	unsigned int count = 0;
+	unsigned int i, j, count = 0;
 	int match;
 
-	while (*s)
+	for (i = 0; s[i] != '\0'; i++)
 	{
 		match = 0;
-		while (*accept)
+		for (j = 0; accept[j] != '\0'; j++)
 		{
-			if (*s == *accept)
+			if (s[i] == accept[j])
 			{
 				count++;
-				match = 5;
+				match = 1;
 				break;
 			}
-			accept++;
 		}
+
 		if (match == 0)
-			return (count);
-		s++;
+			return count;
 	}
 
-	return (count);
+	return count;
 }
