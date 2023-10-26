@@ -1,29 +1,51 @@
 #include "main.h"
 
+int sqrt_rec_odd(int start, int n);
+
 /**
- * _sqrt_recursion - Returns the natural square root of a number.
- * @n: The number to find the square root of.
+ * _sqrt_recursion - find the square root of a given number.
+ * @n: number to find the square root of.
  *
- * Return: The natural square root of n.
- *         If n does not have a natural square root, it returns -1.
+ * Return: the square root as an integer.
  */
 int _sqrt_recursion(int n)
 {
-	return (find_sqrt(n, 1));
+	if (n < 0)
+		return (-1);
+	else if (n <= 1)
+		return (n);
+
+	if (n % 2 == 0)
+	{
+		if (n / 2 == 2 || n == 2)
+			return (2);
+		int sqrt = _sqrt_recursion(n / 2);
+
+		if (n / sqrt == sqrt)
+			return (sqrt);
+		else if (sqrt > 1)
+			return (sqrt * 2);
+		return (-1);
+	}
+	else
+	{
+		return (sqrt_rec_odd(n, n - 2));
+	}
 }
 
 /**
- * find_sqrt - Helper function to find the square root recursively.
- * @n: The number to find the square root of.
- * @guess: The current guess for the square root.
+ * sqrt_rec_odd - helper to deal with odd numbers and primes.
+ * @start: the odd or prime number to check for sqrt.
+ * @n: number to find the square root of.
  *
- * Return: The natural square root of n or -1 if not found.
+ * Return: the square root as an integer.
  */
-int find_sqrt(int n, int guess)
+int sqrt_rec_odd(int start, int n)
 {
-	if (guess * guess == n)
-		return (guess);
-	if (guess * guess > n)
+	if (n < 0)
 		return (-1);
-	return (find_sqrt(n, guess + 1));
+	else if (start == n * n)
+		return (n);
+	else
+		return (sqrt_rec_odd(start, n - 2));
 }
